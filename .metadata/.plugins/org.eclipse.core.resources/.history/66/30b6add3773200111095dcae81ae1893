@@ -1,0 +1,25 @@
+package com.userService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.userService.Entity.User;
+import com.userService.service.UserService;
+
+@RestController
+@RequestMapping("/user")
+public class Controller {
+	
+	@Autowired
+    UserService userServices;
+	
+	 @GetMapping("/{id}")
+	    public User getUser(@PathVariable Long id) {
+	        return userServices.getById(id);
+	    }
+	
+
+}

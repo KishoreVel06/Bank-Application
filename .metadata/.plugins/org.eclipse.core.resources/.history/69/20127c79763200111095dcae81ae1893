@@ -1,0 +1,58 @@
+package com.userService.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.userService.Entity.User;
+import com.userService.repository.UserRepository;
+
+@UserService
+public class Service {
+	
+	@Autowired
+	private  UserRepository repo;
+	
+	@Autowired
+	private  PasswordEncoder security;
+
+	public User registerUser(User user) {
+	repo.findByEmail(user.getEmail()).ifPresent(u->{
+		throw new RuntimeException("Email alerady Registered");
+	});
+	
+		user.setPassword(security.encode(user.getPassword()));
+	return repo.save(user);
+
+ }
+	
+	
+	public User getById(Long Id) {
+		return repo.findById(Id).orElseThrow(()-> new RuntimeException("User Not Found"));
+	}
+	
+	public List<User> findAll(){
+		return repo.findAll();
+	}
+	
+	public void deleteById(Long Id) {
+		User user = repo.getById(Id);
+		repo.delete(user);
+	}
+	
+	public User login(String email,String password) {
+		
+		User user = repo.findByEmail(email).orElseThrow(()-> new RuntimeException("Invalid Email ID"));
+		
+		if(!security.matches(password,user.getPassword())) {
+			throw new RuntimeException("Invalid Exception");
+		}
+		else {
+			return user;
+		}
+		
+	}
+	
+	
+}

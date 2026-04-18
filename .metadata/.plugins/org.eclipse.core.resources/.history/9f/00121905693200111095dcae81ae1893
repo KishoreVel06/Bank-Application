@@ -1,0 +1,21 @@
+package com.userService.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.userService.passwordEncoder.SecurityConfig;
+import com.userService.repository.UserRepository;
+
+@org.springframework.stereotype.Service
+public class Service {
+	
+	@Autowired
+	private  UserRepository repo;
+	
+	@Autowired
+	private  SecurityConfig security;
+	
+	
+	
+	
+
+}

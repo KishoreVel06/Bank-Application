@@ -1,0 +1,10 @@
+spring.application.name=User-Service
+spring.datasource.driver-class-name=com.microsoft.sqlserver.jdbc.SQLServerDriver
+spring.datasource.url=jdbc:sqlserver://localhost:1433;databaseName=userService;encrypt=false
+spring.datasource.username=sa
+spring.datasource.password=admin
+spring.jpa.hibernate.ddl-auto=update
+ 
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.SQLServerDialect
+ 
+server.port=8081

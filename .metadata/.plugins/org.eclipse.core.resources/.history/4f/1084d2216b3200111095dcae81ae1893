@@ -1,0 +1,35 @@
+package com.userService.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.userService.Entity.User;
+import com.userService.passwordEncoder.SecurityConfig;
+import com.userService.repository.UserRepository;
+
+@org.springframework.stereotype.Service
+public class Service {
+	
+	@Autowired
+	private  UserRepository repo;
+	
+	@Autowired
+	private  PasswordEncoder security;
+	
+	/**
+	 * @param user
+	 * @return
+	 */
+	public User registerUser(User user) {
+	repo.findByEmail(user.getEmail()).ifPresent(u->{
+		throw new RuntimeException("Email alerady Registered");
+	});
+	
+		user.setPassword(security.encode(user.getPassword()));
+	return repo.save(user);
+
+}
+	
+	
+	
+}

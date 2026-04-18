@@ -1,0 +1,5 @@
+package com.userService.SecurityConfig;
+
+public class SecurityConfig {
+
+}

@@ -1,0 +1,14 @@
+spring.application.name=AccountService
+
+spring.datasource.driver-class-name=com.microsoft.sqlserver.jdbc.SQLServerDriver
+spring.datasource.url=jdbc:sqlserver://localhost:1433;databaseName=accountService;encrypt=false
+spring.datasource.username=sa
+spring.datasource.password=admin
+spring.jpa.hibernate.ddl-auto=update
+
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.SQLServerDialect
+
+server.port=8082
+
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka/
+eureka.instance.prefer-ip-address=true
