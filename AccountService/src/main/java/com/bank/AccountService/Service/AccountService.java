@@ -8,5 +8,9 @@ import com.bank.AccountService.DTO.FinalResponse;
 public interface AccountService {
 
 	ResponseEntity<FinalResponse> createAccount(Long userId, String accountType);
+
+	ResponseEntity<FinalResponse> changeAccType(Integer accId, String accountType);
+	
+	
 	
 }
