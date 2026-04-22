@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 
 public class AccountResponse {
 	
-
 	private long accountId;
 	private Long userId;
 	private String accountNumber;

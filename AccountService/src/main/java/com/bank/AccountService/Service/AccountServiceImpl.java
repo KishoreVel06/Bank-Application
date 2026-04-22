@@ -1,6 +1,7 @@
 package com.bank.AccountService.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -80,6 +81,36 @@ public class AccountServiceImpl implements AccountService {
 	private String generateAccountNumber() {
 	    int random = (int) (Math.random() * 900000) + 100000; 
 	    return "ACC" + random;
+	}
+
+	@Override
+	public ResponseEntity<FinalResponse> changeAccType(Integer accId, String accountType) {
+		
+		FinalResponse res = new FinalResponse();
+		AccountResponse data = new AccountResponse();
+
+	     Optional<Account> optionalAccount =  accountRepository.findById(accId);
+	    
+	    if(optionalAccount.isEmpty())
+	    {
+	    	res.setMessage("Acc not found with this ID");
+			res.setStatus("Failed");
+			res.setData(null);
+	        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(res);
+	    }
+	    
+	   Account account = optionalAccount.get();
+	   account.setAccountType(accountType);
+	   Account savedAcc = accountRepository.save(account);
+	   
+	   data.setAccountType(savedAcc.getAccountType());
+	   
+	    res.setStatus("SUCCESS");
+	    res.setMessage("AccountType Changed successfully");
+	    res.setData(data);
+	    
+	   
+		return ResponseEntity.status(HttpStatus.OK).body(res);
 	}
 	
 	

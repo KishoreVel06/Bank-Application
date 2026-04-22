@@ -24,6 +24,12 @@ public class AccountController {
 		return accountService.createAccount(request.getUserId(),request.getAccountType());
 	}
 	
+	@PostMapping("/changeAccountType")
+	public ResponseEntity<FinalResponse> changeAccType(@RequestBody UserDTO request)
+	{
+		return accountService.changeAccType(request.getAccId(),request.getAccountType());
+	}
+	
 	
 
 }

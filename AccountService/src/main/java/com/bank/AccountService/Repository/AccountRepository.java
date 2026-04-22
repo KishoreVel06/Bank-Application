@@ -9,6 +9,7 @@ import com.bank.AccountService.Entity.Account;
 public interface AccountRepository extends JpaRepository<Account,Integer> {
 
 	Account findByUserIdAndAccountType(Long userId, String accountType);
-	
+
+
 
 }

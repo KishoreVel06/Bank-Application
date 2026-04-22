@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.userService.DTO.userRequest;
 import com.userService.Entity.UserModel;
 import com.userService.service.UserService;
+import com.userService.util.getRequestWithToken;
 
 @RestController
 @RequestMapping("/user")
@@ -20,6 +22,9 @@ public class Controller {
 	
 	@Autowired
     UserService userServices;
+	
+	@Autowired
+	getRequestWithToken tokenGeneration;
 	
 	 @GetMapping("/{id}")
 	    public UserModel getUser(@PathVariable Long id) {
@@ -35,6 +40,15 @@ public class Controller {
 	    public ResponseEntity<UserModel> register(@RequestBody UserModel user) {
 	        return ResponseEntity.ok(userServices.registerUser(user));
 	    }
+	 
+	 @PostMapping("/login")
+      public ResponseEntity<?> login(@RequestBody userRequest request)
+      {
+		 String userName = request.getUserName();
+		 String passWord = request.getPassword();
+		 
+		 return tokenGeneration.validateInput(userName,passWord);
+      }
 	
 
 }

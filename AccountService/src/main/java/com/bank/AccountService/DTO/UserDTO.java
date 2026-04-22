@@ -3,6 +3,7 @@ package com.bank.AccountService.DTO;
 public class UserDTO {
 	
     private Long userId;
+    private Integer accId;
     private String accountType;
     
 	public Long getUserId() {
@@ -16,6 +17,12 @@ public class UserDTO {
 	}
 	public void setAccountType(String accountType) {
 		this.accountType = accountType;
+	}
+	public Integer getAccId() {
+		return accId;
+	}
+	public void setAccId(Integer accId) {
+		this.accId = accId;
 	}
     
 	
